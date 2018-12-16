@@ -1,0 +1,16 @@
+body{
+    background-image:url(../images/back.jpg);
+    background-size:100%;
+
+}
+#welcome{
+    background-image:url(../images/back.png);
+    width:40%;
+    height:200px;
+    margin-top:180px;
+    border-radius: 50px 50px 50px 50px;
+    margin-left:400px;
+    opacity:0.9;
+    color:white;}
+
+

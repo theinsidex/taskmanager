@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <form method="post">
+        <input type="text" name="name" placeholder="Введите задачу:">
+        <input type="text" name="description" placeholder="Введите описание:">
+        <button type="submit">Добавить</button>
+    </form>
+</div>
+<div>Список задач</div>
+{{#tasks}}
+<b>{{id}}</b>
+<span>{{name}}</span>
+<p>{{description}}</p>
+{{/tasks}}
+</body>
+</html>
