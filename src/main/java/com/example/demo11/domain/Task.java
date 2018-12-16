@@ -2,19 +2,21 @@ package com.example.demo11.domain;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
-    @Entity
-    @Table(name="tsk")
+
+@Entity
+@Table(name = "task")
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
     private String description;
-    private User user;
+    // private User user;
     private LocalDate dateOfCreate;
     private LocalDate dateOfEnd;
-    public Task(){}
+
+    public Task() {
+    }
 
     public Task(String name, String description) {
         this.name = name;
