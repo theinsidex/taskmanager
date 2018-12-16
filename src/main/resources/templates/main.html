@@ -1,4 +1,4 @@
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <body>
 <div>
@@ -8,9 +8,9 @@
     </form>
 </div>
 <div>
-    <form method="post">
-        <input type="text" name="text" placeholder="Введите сообщение" />
-        <input type="text" name="tag" placeholder="Тэг">
+    <form action="/add" method="post">
+        <input type="text" name="name" placeholder="Имя"/>
+        <input type="text" name="description" placeholder="Описание">
         <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
         <button type="submit">Добавить</button>
     </form>
@@ -21,12 +21,10 @@
     <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
     <button type="submit">Найти</button>
 </form>
-{{#messages}}
-<div>
-    <b>{{id}}</b>
-    <span>{{text}}</span>
-    <i>{{tag}}</i>
+<div th:each="task : ${tasks}">
+    <div>Passed parameter : th:text="${task.id}"</div>
+    <div>Passed parameter : th:text="${task.name}"</div>
+    <div>Passed parameter : th:text="${task.description}"</div>
 </div>
-{{/messages}}
 </body>
 </html>
