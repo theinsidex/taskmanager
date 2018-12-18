@@ -18,4 +18,14 @@ public class TaskController {
         taskService.save(task);
         return "main";
     }
+
+    @PostMapping("/delete")
+
+    public String deleteTask(Task task) {
+        Long id = task.getId();
+        taskService.delete(id);
+        return "main";
+
+    }
+
 }

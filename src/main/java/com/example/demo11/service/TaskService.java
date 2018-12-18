@@ -16,14 +16,21 @@ public class TaskService {
     }
 
     public List<Task> getByUser(User user) {
+
         return taskRepo.findAllByUser(user);
     }
 
     public void save(Task task) {
+
         taskRepo.save(task);
+
     }
 
     public Iterable<Task> getAll() {
         return taskRepo.findAll();
+    }
+
+    public void delete(Long id) {
+        taskRepo.deleteById(id);
     }
 }

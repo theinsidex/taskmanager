@@ -3,14 +3,10 @@ package com.example.demo11.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import java.time.LocalDate;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "task")
@@ -20,7 +16,7 @@ import java.time.LocalDate;
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     private String name;
 
@@ -28,13 +24,14 @@ public class Task {
 
     @ManyToOne
     private User user;
-
-    private LocalDate dateOfCreate;
-
-    private LocalDate dateOfEnd;
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
+    private Date dateOfCreate;
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
+    private Date dateOfEnd;
 
     public Task(String name, String description) {
         this.name = name;
         this.description = description;
+        dateOfCreate = new Date();
     }
 }

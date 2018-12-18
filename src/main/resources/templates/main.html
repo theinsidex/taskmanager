@@ -3,28 +3,24 @@
 <body>
 <div>
     <form action="/logout" method="post">
-        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
         <input type="submit" value="Sign Out"/>
     </form>
 </div>
 <div>
     <form action="/add" method="post">
-        <input type="text" name="name" placeholder="Имя"/>
+        <input type="text" name="name" placeholder="Название"/>
         <input type="text" name="description" placeholder="Описание">
-        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
         <button type="submit">Добавить</button>
     </form>
 </div>
-<div>Список сообщений</div>
-<form method="post" action="filter">
-    <input type="text" name="filter">
-    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-    <button type="submit">Найти</button>
-</form>
+<div>Список задач</div>
 <div th:each="task : ${tasks}">
-    <div>Passed parameter : th:text="${task.id}"</div>
-    <div>Passed parameter : th:text="${task.name}"</div>
-    <div>Passed parameter : th:text="${task.description}"</div>
+    <form action="/delete" method="post">
+        <div>Passed parameter : th:text="${task.id}"</div>
+        <div>Passed parameter : th:text="${task.name}"</div>
+        <div>Passed parameter : th:text="${task.description}"</div>
+        <p><input type="button" name="delete" value="Удалить"/></p>
+    </form>
 </div>
 </body>
 </html>

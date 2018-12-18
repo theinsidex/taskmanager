@@ -27,20 +27,20 @@ public class HomeController {
     @PostMapping("/login")
     public String loginProcess(@RequestParam String name, @RequestParam String description, Map<String, Object> model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Task task = new Task(name, description);
-        taskService.save(task);
-
         Iterable<Task> tasks = taskService.getByUser(user);
-        model.put("tasks", tasks);
         return "main";
     }
 
+    @GetMapping("/")
+    public String toMain() {
+        Iterable<Task> tasks = taskService.getAll();
+        return "main";
+    }
+
+
     @GetMapping("/main")
-    public String main(Map<String, Object> model) {
-        Iterable<Task> messages = taskService.getAll();
-
-        model.put("messages", messages);
-
+    public String main() {
+        Iterable<Task> tasks = taskService.getAll();
         return "main";
     }
 }
