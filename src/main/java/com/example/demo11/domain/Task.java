@@ -3,35 +3,44 @@ package com.example.demo11.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.io.Serializable;
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "task")
+@Table(name = "thetask")
 @NoArgsConstructor
 @Getter
 @Setter
-public class Task {
+
+public class Task implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private String name;
-
     private String description;
-
-    @ManyToOne
+    private LocalDate dateOfCreate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate dateOfEnd;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
     private User user;
-    @DateTimeFormat(pattern = "dd.MM.yyyy")
-    private Date dateOfCreate;
-    @DateTimeFormat(pattern = "dd.MM.yyyy")
-    private Date dateOfEnd;
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JoinTable(name = "STATUS", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "status_id"))
+    private Status status;
 
-    public Task(String name, String description) {
+
+    public Task(String name, String description, User user, LocalDate dateOfEnd) {
+        super();
         this.name = name;
         this.description = description;
-        dateOfCreate = new Date();
+        this.user = user;
+        this.status = Status.Processing;
+        this.dateOfCreate = LocalDate.now();
+        this.dateOfEnd = dateOfEnd;
     }
 }

@@ -1,11 +1,11 @@
 package com.example.demo11.service;
 
 import com.example.demo11.domain.Task;
-import com.example.demo11.domain.User;
 import com.example.demo11.repository.TaskRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TaskService {
@@ -15,9 +15,12 @@ public class TaskService {
         this.taskRepo = taskRepo;
     }
 
-    public List<Task> getByUser(User user) {
-
-        return taskRepo.findAllByUser(user);
+    public List<Task> getByUser(Long id) {
+        List<Task> tasks = (List<Task>) taskRepo.findAll();
+        tasks = tasks.stream()
+                .filter(x -> x.getUser().getId().equals(id))
+                .collect(Collectors.toList());
+        return tasks;
     }
 
     public void save(Task task) {

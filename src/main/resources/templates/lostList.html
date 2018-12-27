@@ -17,7 +17,7 @@
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <style>
         #task {
-            border-radius: 0 50px 50px 0;
+            border-radius: 50px 50px 50px 50px;
             background-color: gainsboro;
             width: 40%;
         }
@@ -26,9 +26,8 @@
             float: left;
             margin-left: 10px;
         }
-
     </style>
-    <title>Главная</title>
+    <title>Список невыполненных задач</title>
 </head>
 <body>
 
@@ -55,9 +54,9 @@
 <div id="task" th:each="task : ${tasks}">
     <form th:action="@{/main/delete}" th:object="${task}" method="post">
         <input type="hidden" name="id" th:value="${task.id}">
-        <div class="alert alert-warning" role="alert"><label><strong>Название:</strong> </label>
+        <div class="alert alert-warning" role="alert"><label>Название: </label>
             <p th:utext="${task.name}"></p></div>
-        <div class="alert alert-info" role="alert"><label><strong>Описание:</strong> </label>
+        <div class="alert alert-info" role="alert"><label>Описание: </label>
             <p th:utext="${task.description}"></p></div>
         <div style="width:30%;float:right;" class="alert alert-danger" role="alert"><label><strong>Дата
             окончания:</strong> </label>

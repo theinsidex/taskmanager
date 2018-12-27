@@ -3,9 +3,45 @@
 >
 <head>
     <title>Добро пожаловать! </title>
-    <link rel="stylesheet" type="text/css" th:href="@{/main}"/>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: grey;
+        }
+
+        #welcome {
+            width: 35%;
+            height: 200px;
+            margin-top: 180px;
+            border-radius: 50px 50px 50px 50px;
+            margin-left: 35%;
+            background-color: gainsboro;
+
+        }
+
+        #welcome h1 {
+            margin-left: 16%;
+        }
+
+        #labels {
+            margin-left: 20%;
+        }
+    </style>
 </head>
-<div>
 <div th:if="${param.error}">
     Неверное имя пользователя или пароль!
 </div>
@@ -14,10 +50,13 @@
 </div>
     <div id="welcome">
 <form th:action="@{/login}" method="post">
-    <p> User Name : <input type="text" name="username"/></p>
-    <p> Password: <input type="password" name="password"/></p>
+    <h1>Welcome, login please</h1>
+    <div id="labels">
+        <p><input type="text" name="username" placeholder="Введите логин"/></p>
+        <p><input type="password" name="password" placeholder="Введите пароль"/></p>
     <div><input type="submit" value="Войти"/>
         <a href="/registration"><input type="button" name="reg" value="Регистрация"></a></div>
+    </div>
 </form>
     </div>
 </div>

@@ -1,10 +1,8 @@
-body{
-    background-image:url(../images/back.jpg);
-    background-size:100%;
-
+#header {
+    back
 }
 #welcome{
-    background-image:url(../images/back.png);
+    background-image: url(../../../);
     width:40%;
     height:200px;
     margin-top:180px;

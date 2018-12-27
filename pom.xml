@@ -82,6 +82,8 @@
             <artifactId>jquery</artifactId>
             <version>2.1.1</version>
         </dependency>
+
+
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>

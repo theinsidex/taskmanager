@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <title>Добро пожаловать! </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        body {
+            background-color: cadetblue;
+        }
+
+        #newtask {
+            background-color: gainsboro;
+            width: 40%;
+            border-radius: 50px 50px 50px 50px;
+        }
+
+        #inside {
+            margin-left: 20%;
+            margin-right: 20%;
+            margin-bottom: 15px;
+        }
+
+        ul li {
+            float: left;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <nav class="navbar navbar-dark bg-dark">
+        <ul>
+            <ul>
+                <li><a href="/main">
+                    <button type="button" class="btn btn-light"> Список задач</button>
+                </a></li>
+                <li><a href="/listLost">
+                    <button type="button" class="btn btn-light">Список невыполненных задач</button>
+                </a></li>
+                <li><a th:href="@{/logout}">
+                    <button type="button" class="btn btn-light">Выйти</button>
+                </a></li>
+            </ul>
+        </ul>
+    </nav>
+</div>
+<div id="newtask">
+    <div id="inside">
+        <form action="#" th:action="@{/editor/submit}" th:object="${task}" method="post">
+            <h1>Новая задача</h1>
+            <div class="form-group">
+                <label for="usr">Название</label>
+                <p><input type="text" class="form-control" id="usr" th:field="*{name}"/></p></div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Описание</span>
+                    </div>
+                    <textarea class="form-control" id="comment" th:field="*{description}"
+                              aria-label="Описание"></textarea>
+                </div>
+            </div>
+            <div id="date">
+                <label>Дата, к которой нужно выполнить:</label><input type="date" name="dateOfEnd"/>
+            </div>
+            <input type="hidden" id="dateOfCreate" th:text="*{dateOfCreate}">
+            <input type="hidden" id="dateOfEnd" th:text="*{dateOfEnd}">
+            <input type="hidden" id="user_id" th:field="*{user}">
+            <input type="hidden" id="status" th:field="*{status}">
+            <button type="submit" class="btn btn-success">Добавить</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
